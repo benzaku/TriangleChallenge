@@ -49,6 +49,8 @@ public class TriangleChallenge {
 			System.err.println("Input Wrong!");
 		} catch (IllegalTriangleException e) {
 			System.err.println("Your input of triangle sides cannot form a triangle");
+		} catch (Exception e) {
+			System.err.println("Unknown Error!");
 		}
 	}
 }
