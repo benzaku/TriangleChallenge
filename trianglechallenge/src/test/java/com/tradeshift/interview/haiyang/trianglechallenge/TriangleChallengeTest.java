@@ -83,6 +83,21 @@ public class TriangleChallengeTest extends TestCase {
 	public void testCreateIllegalTriangleWithLengthBelowZero() {
 		Exception expectedException = null;
 		Triangle t = null;
+		
+		// All sides < 0
+		try {
+			t = new SimpleTriangleImpl(-3.1, -3.2, -0.1);
+		} catch (IllegalTriangleException e) {
+			expectedException = e;
+		} finally {
+			assertNotNull(expectedException);
+			assertNull(t);
+		}
+		
+		expectedException = null;
+		t = null;
+		
+		// one side < 0
 		try {
 			t = new SimpleTriangleImpl(-1.1, 3.2, 2.7);
 		} catch (IllegalTriangleException e) {
@@ -188,6 +203,34 @@ public class TriangleChallengeTest extends TestCase {
 		t = null;
 		try {
 			t = new SimpleTriangleImpl(0, 0, 1);
+		} catch (IllegalTriangleException e) {
+			expectedException = e;
+		} finally {
+			assertNotNull(expectedException);
+			assertNull(t);
+		}
+	}
+	
+	public void testCreateIllegalTriangle() {
+		Exception expectedException = null;
+		Triangle t = null;
+		
+		// a + b = c
+		try {
+			t = new SimpleTriangleImpl(1, 2, 3);
+		} catch (IllegalTriangleException e) {
+			expectedException = e;
+		} finally {
+			assertNotNull(expectedException);
+			assertNull(t);
+		}
+		
+		expectedException = null;
+		t = null;
+		
+		// a + b = <
+		try {
+			t = new SimpleTriangleImpl(1, 2, 4);
 		} catch (IllegalTriangleException e) {
 			expectedException = e;
 		} finally {
